@@ -1,6 +1,7 @@
 header {
     display: flex;
     background-color: #fff;
+    /* box-shadow: 0 0 40px -10px #84646440; */
     justify-content: center;
     min-height: 8vh;
 }
@@ -19,18 +20,7 @@ header h1 {
 section {
     display: flex;
     justify-content: center;
-    align-items: center;
     box-sizing: border-box;
-    min-height: 70vh;
-    padding: 10rem;
-}
-
-section p:first-of-type {
-    color: #925d6a;
-    font-size: 1.5rem;
-    font-weight: 500;
-    user-select: none;
-    margin: 0 0 7.5rem;
 }
 
 footer {

@@ -1,5 +1,6 @@
 import { BrowserRouter, Link } from 'react-router-dom';
 
+import ViewArea from './components/ViewArea';
 import './App.css';
 
 
@@ -12,7 +13,7 @@ function App() {
                 </Link>
             </header>
             <section>
-                <p>Content coming soon...</p>
+                <ViewArea/>
             </section>
             <footer>
                 <p>
