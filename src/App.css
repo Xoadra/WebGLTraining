@@ -1,12 +1,12 @@
-.app {
-    text-align: center;
-}
-
 header {
     display: flex;
     background-color: #fff;
     justify-content: center;
     min-height: 8vh;
+}
+
+header a {
+    text-decoration: none;
 }
 
 header h1 {
@@ -36,8 +36,9 @@ section p:first-of-type {
 footer {
     display: flex;
     background-color: #543544;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     box-sizing: border-box;
     min-height: 18vh;
     padding: 3rem 3rem 4rem;

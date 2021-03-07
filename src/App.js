@@ -1,11 +1,15 @@
+import { BrowserRouter, Link } from 'react-router-dom';
+
 import './App.css';
 
 
 function App() {
     return (
-        <div className="app">
+        <BrowserRouter>
             <header>
-                <h1>WebGL Training App</h1>
+                <Link to="/">
+                    <h1>WebGL Training App</h1>
+                </Link>
             </header>
             <section>
                 <p>Content coming soon...</p>
@@ -33,7 +37,7 @@ function App() {
                     .
                 </p>
             </footer>
-        </div>
+        </BrowserRouter>
     );
 }
 
