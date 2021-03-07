@@ -10,17 +10,19 @@ header {
 }
 
 header h1 {
-    color: #ff0b2b;
+    color: #ff0b4d;
     font-family: 'Cute Font';
     font-size: 5rem;
-    margin: 1.25rem;
+    margin: 1rem;
 }
 
 section {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
+    box-sizing: border-box;
+    min-height: 70vh;
+    padding: 10rem;
 }
 
 section p:first-of-type {
@@ -28,4 +30,34 @@ section p:first-of-type {
     font-size: 1.5rem;
     font-weight: 500;
     user-select: none;
+    margin: 0 0 7.5rem;
+}
+
+footer {
+    display: flex;
+    background-color: #543544;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 18vh;
+    padding: 3rem 3rem 4rem;
+}
+
+footer p:nth-of-type(1) {
+    color: #fff0f5;
+    font-size: 1.25rem;
+    margin: 0 0 2.5rem;
+}
+
+footer p:nth-of-type(2) {
+    color: #e0b0c8;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #ff70d9;
+}
+
+footer a:visited {
+    color: #c04f7e;
 }
