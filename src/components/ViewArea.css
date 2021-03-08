@@ -34,4 +34,6 @@ figure figcaption {
 canvas {
     z-index: 0;
     background-color: #171012;
+    box-sizing: border-box;
+    padding: 0.5rem;
 }

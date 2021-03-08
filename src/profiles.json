@@ -1,6 +1,29 @@
 {
     "1.0": {
         "context": "webgl",
-        "shaders": []
+        "shaders": [
+            {
+                "type": "vertex",
+                "body": {
+                    "values": [
+                        "attribute vec4 a_position"
+                    ],
+                    "main": [
+                        "gl_Position = a_position"
+                    ]
+                }
+            },
+            {
+                "type": "fragment",
+                "body": {
+                    "values": [
+                        "precision mediump float"
+                    ],
+                    "main": [
+                        "gl_FragColor = vec4(1, 0, 0.5, 1)"
+                    ]
+                }
+            }
+        ]
     }
 }
