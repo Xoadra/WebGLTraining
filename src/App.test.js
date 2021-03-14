@@ -18,8 +18,7 @@ test('renders WebGL Fundamentals link', () => {
     const footerElement = screen.getByRole('contentinfo');
     const linkElement = within(footerElement).getByRole('link', { name });
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('target', '_blank');
-    expect(linkElement).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(linkElement).toBeOpenedInNewWindow();
 });
 
 test('renders MDN Web Docs link', () => {
@@ -27,6 +26,5 @@ test('renders MDN Web Docs link', () => {
     const footerElement = screen.getByRole('contentinfo');
     const linkElement = within(footerElement).getByRole('link', { name });
     expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('target', '_blank');
-    expect(linkElement).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(linkElement).toBeOpenedInNewWindow();
 });
