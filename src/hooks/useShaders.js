@@ -1,18 +1,19 @@
 function useShaders(webGl, shaderConfigs) {
-    return !webGl ? null : shaderConfigs.reduce((shaders, { type, body }) => {
-        const values = `${body.values.join(';\n')}${body.values.length > 0 ? ';\n' : ''}`;
-        const main = `${body.main.join(';\n\t')}${body.values.main > 0 ? ';\n\t' : ''}`;
-        const shader = webGl.createShader(type);
-        webGl.shaderSource(shader, `${values}void main() {\n\t${main};\n}`);
-        webGl.compileShader(shader);
-        if (webGl.getShaderParameter(shader, webGl.COMPILE_STATUS)) {
-            return { ...shaders, [type]: shader };
-        } else {
-            console.error(webGl.getShaderInfoLog(shader));
-            webGl.deleteShader(shader);
-            return { ...shaders, [type]: null };
+    return !webGl ? null : shaderConfigs.map(({ type, body }) => {
+        const { values, main } = body;
+        const topLevel = `${values.join(';\n')}${values.length > 0 ? ';\n' : ''}`;
+        const mainFunction = `${main.join(';\n\t')}${main.length > 0 ? ';\n\t' : ''}`;
+        const rawSource = `${topLevel}void main() {\n\t${mainFunction};\n}`;
+        const webGlShader = webGl.createShader(type);
+        webGl.shaderSource(webGlShader, rawSource);
+        webGl.compileShader(webGlShader);
+        const isSuccess = webGl.getShaderParameter(webGlShader, webGl.COMPILE_STATUS);
+        if (!isSuccess) {
+            console.error(webGl.getShaderInfoLog(webGlShader));
+            webGl.deleteShader(webGlShader);
         }
-    }, {});
+        return { type, source: rawSource, shader: isSuccess ? webGlShader : null };
+    });
 }
 
 

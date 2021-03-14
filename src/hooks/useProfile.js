@@ -1,13 +1,11 @@
-import useShaders from '../hooks/useShaders';
 import profileConfigs from '../profiles.json';
 
 
 function useProfile(webGl, profileId) {
-    const { shaders } = profileConfigs[profileId];
     return {
         ...profileConfigs[profileId],
         id: profileId,
-        shaders: useShaders(webGl, shaders.map(shader => {
+        shaders: profileConfigs[profileId].shaders.map(shader => {
             switch (shader.type) {
                 case 'vertex':
                     return { ...shader, type: webGl?.VERTEX_SHADER };
@@ -16,7 +14,7 @@ function useProfile(webGl, profileId) {
                 default:
                     throw new TypeError(`Shader type must be either 'vertex' or 'fragment'`);
             }
-        }))
+        })
     };
 }
 

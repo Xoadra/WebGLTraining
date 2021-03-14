@@ -1,21 +1,17 @@
 import { useRef, useState, useEffect } from 'react';
 
-import useProfile from '../hooks/useProfile';
+import useEngine from '../hooks/useEngine';
 import './ViewArea.css';
 
 
 function ViewArea() {
     const canvas = useRef(null);
-    const [webGl, setWebGl] = useState(null);
     const [message, setMessage] = useState('');
-    const profile = useProfile(webGl, '1.0');
+    const engine = useEngine(canvas, '1.0');
     useEffect(() => {
-        setWebGl(() => {
-            const newWebGl = canvas.current.getContext(profile.context);
-            setMessage(newWebGl ? 'Content coming soon...' : 'WebGL won\'t work! So sad...');
-            return newWebGl;
-        });
-    }, [profile.context]);
+        const available = canvas.current.getContext(engine.profile.context);
+        setMessage(available ? 'Content coming soon...' : 'WebGL won\'t work! So sad...');
+    }, [engine.profile.context]);
     return (
         <figure>
             <div id="overlay"/>
