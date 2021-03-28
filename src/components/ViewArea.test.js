@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 
 import ViewArea from './ViewArea';
+import { MockWebGLRenderingContext } from '../testing/WebGL';
 
 
 test('renders without figcaption text before loading webgl', () => {
@@ -22,14 +23,7 @@ test('renders figcaption error text if webgl is unavailable', () => {
 
 test('renders figcaption content status text if webgl is available', () => {
     const mockGetContext = jest.spyOn(HTMLCanvasElement.prototype, 'getContext');
-    mockGetContext.mockReturnValue({
-        compileShader: jest.fn(),
-        createShader: jest.fn(),
-        deleteShader: jest.fn(),
-        getShaderInfoLog: jest.fn(shader => 'Info'),
-        getShaderParameter: jest.fn((shader, status) => true),
-        shaderSource: jest.fn()
-    });
+    mockGetContext.mockReturnValue(new MockWebGLRenderingContext('webgl'));
     render(<ViewArea/>);
     mockGetContext.mockRestore();
     const figureElement = screen.getByRole('figure');
