@@ -1,0 +1,36 @@
+name: draft-workflow
+on:
+    push:
+        branches:
+            - primary
+    pull_request:
+        branches:
+            - primary
+jobs:
+    setup:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                node-version: '14'
+            - run: npm install netlify-cli -g
+            - run: npm install
+    build:
+        needs: setup
+        runs-on: ubuntu-latest
+        steps:
+            - run: npm run build
+    test:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo 'NETLIFY_DEPLOY_PREVIEW_URL=${{ env.GITHUB_SHA }}-test-${{ env.NETLIFY_SITE_URL }}' >> $GITHUB_ENV
+            - run: netlify deploy
+            - run: npm run test
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - run: netlify deploy --prod
